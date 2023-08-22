@@ -64,3 +64,15 @@ student_data_math.head()
 
 #%%
 student_data_math.info()
+#%%
+student_data_math['sex'].head()
+#%%
+student_data_math['absences'].head()
+#%%
+student_data_math.groupby('sex')['age'].mean()
+#%%
+student_data_math.groupby('address')['G1','G3'].mean()
+#%%
+matplotlib.use('TkAgg') #グラフ表示するときこれがないと出てこないぽい。
+sns.pairplot(student_data_math,vars=['age','Medu','Fedu','absences','traveltime','studytime'],hue='sex')
+plt.show()
