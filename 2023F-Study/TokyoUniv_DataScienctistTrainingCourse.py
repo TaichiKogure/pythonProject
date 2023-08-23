@@ -44,7 +44,7 @@ import io
 
 from sklearn import linear_model
 
-#%%
+#%
 url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
 #Get data from URL
 r = requests.get(url, stream=True)
@@ -53,26 +53,49 @@ r = requests.get(url, stream=True)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall()
 
-#%%
+#%
 student_data_math = pd.read_csv('student-mat.csv')
 student_data_math.head()
 
-#%%
+#%
 #区切りを変える
 student_data_math = pd.read_csv('student-mat.csv', sep= ';')
 student_data_math.head()
 
-#%%
+#
 student_data_math.info()
-#%%
+#%
 student_data_math['sex'].head()
-#%%
+#%
 student_data_math['absences'].head()
-#%%
+#%
 student_data_math.groupby('sex')['age'].mean()
-#%%
+#%
 student_data_math.groupby('address')['G1','G3'].mean()
-#%%
+#%
 matplotlib.use('TkAgg') #グラフ表示するときこれがないと出てこないぽい。
 sns.pairplot(student_data_math,vars=['age','Medu','Fedu','absences','traveltime','studytime'],hue='sex')
 plt.show()
+
+#%%
+#ヒストグラムを書く
+plt.hist(student_data_math['absences'])
+plt.xlabel('absences')
+plt.ylabel('count')
+plt.grid(True)
+#平均値
+print('average:',student_data_math['absences'].mean())
+#中央値
+print('median:',student_data_math['absences'].median())
+#最頻値
+print('mode:',student_data_math['absences'].mode())
+#分散
+print('var:',student_data_math['absences'].var())
+#標準偏差
+print('stddev:',student_data_math['absences'].std())
+#%%
+#パーセンたいる
+student_data_math['absences'].describe()
+
+
+
