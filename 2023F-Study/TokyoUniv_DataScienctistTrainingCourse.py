@@ -97,5 +97,6 @@ print('stddev:',student_data_math['absences'].std())
 #パーセンたいる
 student_data_math['absences'].describe()
 
-
-
+#%%
+XX = student_data_math.describe()
+print(XX)
