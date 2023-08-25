@@ -120,6 +120,6 @@ ax1.set_title('Student')
 ax1.set_xticklabels(
     ['age', 'absences', 'failures','freetime','Medu','Fedu','traveltime','studytime','famrel','goout','G1','G2','G3','walk','health']
 )
-plt.ylim([-3,30])
+plt.ylim([-3,50])
 ax1.boxplot(data)
 plt.show()
