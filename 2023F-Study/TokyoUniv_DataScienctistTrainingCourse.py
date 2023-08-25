@@ -100,3 +100,26 @@ student_data_math['absences'].describe()
 #%%
 XX = student_data_math.describe()
 print(XX)
+#%%
+#箱ひげず
+plt.boxplot([student_data_math['age'],student_data_math['absences'],student_data_math['failures'],student_data_math['freetime']])
+plt.grid(True)
+#%%
+plt.boxplot(student_data_math['absences'])
+plt.grid(True)
+
+#%%
+data = (
+    student_data_math['age'],student_data_math['absences'],student_data_math['failures'],student_data_math['freetime'],
+student_data_math['Medu'],student_data_math['Fedu'],student_data_math['traveltime'],student_data_math['studytime'],
+student_data_math['famrel'],student_data_math['goout'],student_data_math['G1'],student_data_math['G2'],student_data_math['G3']
+,student_data_math['Walc'],student_data_math['health']
+        )
+fig1, ax1 = plt.subplots()
+ax1.set_title('Student')
+ax1.set_xticklabels(
+    ['age', 'absences', 'failures','freetime','Medu','Fedu','traveltime','studytime','famrel','goout','G1','G2','G3','walk','health']
+)
+plt.ylim([-3,30])
+ax1.boxplot(data)
+plt.show()
