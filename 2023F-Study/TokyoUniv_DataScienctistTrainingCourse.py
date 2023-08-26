@@ -123,3 +123,7 @@ ax1.set_xticklabels(
 plt.ylim([-3,50])
 ax1.boxplot(data)
 plt.show()
+#%%
+# 変動係数
+#student_data_math['absences'].std()/student_data_math['absences'].mean()
+student_data_math.std()/student_data_math.mean()
