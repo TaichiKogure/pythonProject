@@ -127,3 +127,9 @@ plt.show()
 # 変動係数
 #student_data_math['absences'].std()/student_data_math['absences'].mean()
 student_data_math.std()/student_data_math.mean()
+#%%
+plt.plot(student_data_math['G1'],student_data_math['G3'],'o')
+plt.xlabel('G1 grade')
+plt.ylabel('G3 grade')
+plt.grid(True)
+plt.show()
