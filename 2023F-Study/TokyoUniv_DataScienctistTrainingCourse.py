@@ -133,3 +133,8 @@ plt.xlabel('G1 grade')
 plt.ylabel('G3 grade')
 plt.grid(True)
 plt.show()
+
+
+#%%
+#共分散行列
+np.cov(student_data_math['G1'],student_data_math['G3'])
