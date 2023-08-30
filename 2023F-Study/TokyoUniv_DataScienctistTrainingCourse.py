@@ -142,3 +142,6 @@ np.cov(student_data_math['G1'],student_data_math['G3'])
 #G1とG3の共分散、G1の分散、G3の分散が出てくる。
 print('G1の分散',student_data_math['G1'].var())
 print('G3の分散',student_data_math['G3'].var())
+
+#%%
+sp.stats.pearsonr(student_data_math['G1'],student_data_math['G3'])
