@@ -146,3 +146,7 @@ print('G3の分散',student_data_math['G3'].var())
 #%%
 sp.stats.pearsonr(student_data_math['G1'],student_data_math['G3'])
 np.corrcoef([student_data_math['G1'],student_data_math['G3']])
+#%%
+sns.pairplot(student_data_math[['Dalc','Walc','G1','G2','G3']])
+plt.grid(True)
+plt.show()
