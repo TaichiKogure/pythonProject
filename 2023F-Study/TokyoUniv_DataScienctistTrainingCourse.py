@@ -150,3 +150,56 @@ np.corrcoef([student_data_math['G1'],student_data_math['G3']])
 sns.pairplot(student_data_math[['Dalc','Walc','G1','G2','G3']])
 plt.grid(True)
 plt.show()
+
+#%%
+
+import numpy as np
+import scipy as sp
+import pandas as pd
+from pandas import Series, DataFrame
+
+#可視化ライブラリ
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+%precision 3
+
+import requests, zipfile
+from io import StringIO
+import io
+
+from sklearn import linear_model
+
+#%
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
+#Get data from URL
+r = requests.get(url, stream=True)
+
+# load and extract zipfile
+z = zipfile.ZipFile(io.BytesIO(r.content))
+z.extractall()
+
+#%%
+student_data_por = pd.read_csv('student-por.csv')
+student_data_por.head()
+
+#%%
+#区切りを変える
+student_data_por = pd.read_csv('student-mat.csv', sep= ';')
+student_data_por.head()
+
+#
+student_data_por.info()
+#%%
+student_data_por['sex'].head()
+#%%
+student_data_por['absences'].head()
+#%%
+student_data_por.groupby('sex')['age'].mean()
+#%%
+student_data_por.groupby('address')['G1'].mean()
+#%%
+matplotlib.use('TkAgg') #グラフ表示するときこれがないと出てこないぽい。
+sns.pairplot(student_data_por,vars=['age','Medu','Fedu','absences','traveltime','studytime'],hue='sex')
+plt.show()
