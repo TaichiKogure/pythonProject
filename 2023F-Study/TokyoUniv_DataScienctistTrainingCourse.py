@@ -203,3 +203,16 @@ student_data_por.groupby('address')['G1'].mean()
 matplotlib.use('TkAgg') #グラフ表示するときこれがないと出てこないぽい。
 sns.pairplot(student_data_por,vars=['age','Medu','Fedu','absences','traveltime','studytime'],hue='sex')
 plt.show()
+#%%
+plt.plot(student_data_math['G1'],student_data_math['G3'],'o')
+plt.grid(True)
+plt.show()
+#%%
+from sklearn import linear_model
+reg = linear_model.LinearRegression()
+
+X= student_data_math.loc[:,['G1']].values
+Y= student_data_math['G3'].values
+reg.fit(X,Y)
+print('回帰曲線', reg.coef_)
+print('切片', reg.intercept_)
