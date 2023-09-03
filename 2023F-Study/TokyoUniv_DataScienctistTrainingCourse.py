@@ -208,6 +208,38 @@ plt.plot(student_data_math['G1'],student_data_math['G3'],'o')
 plt.grid(True)
 plt.show()
 #%%
+#%%
+#　上の方から引用。　
+# 　再開するときにここ押す
+# 　ZIPファイルとかをダウンロードするためのライブラリ
+import numpy as np
+import scipy as sp
+import pandas as pd
+from pandas import Series, DataFrame
+#可視化ライブラリ
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+%precision 3
+
+import requests, zipfile
+from io import StringIO
+import io
+
+from sklearn import linear_model
+#%
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
+#Get data from URL
+r = requests.get(url, stream=True)
+# load and extract zipfile
+z = zipfile.ZipFile(io.BytesIO(r.content))
+z.extractall()
+student_data_math = pd.read_csv('student-mat.csv')
+
+student_data_math = pd.read_csv('student-mat.csv', sep= ';')
+student_data_math.head()
+#%%
 from sklearn import linear_model
 reg = linear_model.LinearRegression()
 
@@ -216,3 +248,4 @@ Y= student_data_math['G3'].values
 reg.fit(X,Y)
 print('回帰曲線', reg.coef_)
 print('切片', reg.intercept_)
+
