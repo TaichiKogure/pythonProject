@@ -248,4 +248,15 @@ Y= student_data_math['G3'].values
 reg.fit(X,Y)
 print('回帰曲線', reg.coef_)
 print('切片', reg.intercept_)
+#%%
+plt.scatter(X,Y)
+plt.xlabel('G1 Grade')
+plt.ylabel('G3 Grade')
+plt.plot(X,reg.predict(X))
+plt.grid(True)
+plt.show()
+#%%
+#決定係数
+reg.score(X,Y)
+
 
