@@ -259,4 +259,17 @@ plt.show()
 #決定係数
 reg.score(X,Y)
 
+#%%
+#総合練習３−１
+wine = pd.read_csv('http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv',sep=';')
+wine.head()
+#%%
+DES = wine.describe()
+print(DES)
+#%%
+sns.pairplot(wine)
+plt.show()
 
+#%%
+sns.jointplot(x="fixed acidity",y="citric acid",data=wine)
+plt.show()
