@@ -273,4 +273,4 @@ plt.show()
 #%%
 sns.jointplot(x="fixed acidity",y="citric acid",data=wine)
 plt.show()
-#test
+#test2
