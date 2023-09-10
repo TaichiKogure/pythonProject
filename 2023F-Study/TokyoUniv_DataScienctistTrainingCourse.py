@@ -36,7 +36,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
-%precision 3
+#%precision 3
 
 import requests, zipfile
 from io import StringIO
@@ -163,7 +163,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
-%precision 3
+#%precision 3
 
 import requests, zipfile
 from io import StringIO
@@ -221,7 +221,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
-%precision 3
+#%precision 3
 
 import requests, zipfile
 from io import StringIO
@@ -274,3 +274,19 @@ plt.show()
 sns.jointplot(x="fixed acidity",y="citric acid",data=wine)
 plt.show()
 #test2
+#%%
+#確率と統計
+import numpy as np
+import scipy as sp
+import pandas as pd
+from pandas import  Series, DataFrame
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+np.random.seed(0)
+#%%
+#サイコロが取る数字を配列に格納
+dice_data = np.array([1,2,3,4,5,6])
+print('一つだけランダムに抽出', np.random.choice(dice_data,1))
+
+
