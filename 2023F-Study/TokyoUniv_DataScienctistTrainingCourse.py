@@ -289,4 +289,25 @@ np.random.seed(0)
 dice_data = np.array([1,2,3,4,5,6])
 print('一つだけランダムに抽出', np.random.choice(dice_data,1))
 
+#サイコロを１０００回振ってみる
+calc_steps = 1000
+#１−６のデータの中から１０００回の抽出を実施
+dice_rolls = np.random.choice(dice_data, calc_steps)
+#それぞれの数字がどれくらいの確率で出たか計算
+for i in range(1,7):
+    p = len(dice_rolls[dice_rolls==i])/ calc_steps
+    print(i,'が出る確率',p)
+
+#%%
+calc_steps= 1000
+
+dice_rolls = np.random.choice(dice_data, calc_steps)
+prob_data = np.array([])
+for i in range(1,7):
+    p = len(dice_rolls[dice_rolls==i]) / calc_steps
+    prob_data = np.append(prob_data, len(dice_rolls[dice_rolls==i])/calc_steps)
+
+plt.bar(dice_data, prob_data)
+plt.grid(True)
+plt.show()
 
