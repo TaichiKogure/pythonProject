@@ -301,7 +301,11 @@ for i in range(1,7):
 #%%
 calc_steps= 1000
 
+#１から６までのデータの中から１０００回の抽出
 dice_rolls = np.random.choice(dice_data, calc_steps)
+
+#それぞれの数字がどのくらいの割合で抽出されたか
+
 prob_data = np.array([])
 for i in range(1,7):
     p = len(dice_rolls[dice_rolls==i]) / calc_steps
