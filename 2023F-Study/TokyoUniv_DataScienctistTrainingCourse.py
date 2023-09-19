@@ -336,19 +336,34 @@ plt.show()
 # %%
 # ベルヌーイ分布
 # 0を表，１を裏とする，さんぷるすうは8個
-prob_data2 = np.array([])
+prob_be_data = np.array([])
 coin_data = np.array([0, 0, 0, 0, 0, 1, 1, 1])
 # Uniqueで一意な値を抽出
 for i in np.unique(coin_data):
     p = len(coin_data[coin_data == i]) / len(coin_data)
     print(i, 'が出る確率', p)
     print(prob_be_data)
-    prob_be_data = np.append(prob_data2, p)
+    prob_be_data = np.append(prob_be_data, p)
 
 print(prob_be_data)
 
 #%%
 plt.bar([0, 1], prob_be_data, align='center')
 plt.xticks([0, 1], ['head', 'tail'])
+plt.grid(True)
+plt.show()
+
+#%%
+#poisson分布
+x = np.random.poisson(7,1000)
+plt.hist(x)
+plt.grid(True)
+plt.show()
+
+#%%
+#正規分布
+#平均、標準偏差、サンプル数
+y = np.random.normal(6,10,40000)
+plt.hist(y)
 plt.grid(True)
 plt.show()
