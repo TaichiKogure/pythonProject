@@ -374,10 +374,18 @@ plt.show()
 #%%
 import requests
 import zipfile
-from io import stringIO
+import numpy as np
+import scipy as sp
+import pandas as pd
+from pandas import Series, DataFrame
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+import io
+from io import StringIO
 
 zip_file_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
- rr: Any = requests.get(zip_file_url,stream=True)
+ rr = requests.get(zip_file_url,stream=True)
  z = zipfile.ZipFile(io.BytesIO(rr.content))
  z.extractall()
  #データ読み込み
