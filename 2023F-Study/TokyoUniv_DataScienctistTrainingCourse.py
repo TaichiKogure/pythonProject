@@ -347,6 +347,8 @@ for i in np.unique(coin_data):
 
 print(prob_be_data)
 
+
+
 #%%
 plt.bar([0, 1], prob_be_data, align='center')
 plt.xticks([0, 1], ['head', 'tail'])
@@ -360,10 +362,15 @@ plt.hist(x)
 plt.grid(True)
 plt.show()
 
-#%%
 #正規分布
 #平均、標準偏差、サンプル数
 y = np.random.normal(6,10,40000)
 plt.hist(y)
 plt.grid(True)
 plt.show()
+
+
+
+
+# %
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
