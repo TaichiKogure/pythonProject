@@ -1,4 +1,6 @@
 # %%
+from typing import Any
+
 import random
 import numpy as np
 import matplotlib
@@ -369,8 +371,20 @@ plt.hist(y)
 plt.grid(True)
 plt.show()
 
+#%%
+import requests
+import zipfile
+from io import stringIO
 
-
-
-# %
-url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
+zip_file_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
+ rr: Any = requests.get(zip_file_url,stream=True)
+ z = zipfile.ZipFile(io.BytesIO(rr.content))
+ z.extractall()
+ #データ読み込み
+ student_data_math = pd.read_csv('student-mat.csv', sep=';')
+ #カーネル密度関数
+ student_data_math.absences.plot(kind='kde', style='k--')
+ #単純なヒストグラム
+ student_data_math.absences.hist(density = True)
+ plt.grid(True)
+ plt.show()
