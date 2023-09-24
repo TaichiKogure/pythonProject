@@ -372,5 +372,6 @@ plt.show()
 
 
 
-# %
+#%%
+
 url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
