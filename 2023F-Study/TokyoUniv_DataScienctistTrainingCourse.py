@@ -396,3 +396,5 @@ zip_file_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/
  student_data_math.absences.hist(density = True)
  plt.grid(True)
  plt.show()
+ #%%
+
