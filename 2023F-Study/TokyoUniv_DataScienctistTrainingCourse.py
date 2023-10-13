@@ -412,3 +412,31 @@ normal_sample_data = [np.random.lognormal(0, 1.2, 1000).mean() for i in range(N)
 plt.hist(normal_sample_data, bins=50, color='r')
 plt.grid(True)
 plt.show()
+#%%
+import requests
+import zipfile
+import numpy as np
+import scipy as sp
+import pandas as pd
+from pandas import Series, DataFrame
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+import io
+from io import StringIO
+
+zip_file_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip'
+ rr = requests.get(zip_file_url,stream=True)
+ z = zipfile.ZipFile(io.BytesIO(rr.content))
+ z.extractall()
+ #データ読み込み
+ student_data_math = pd.read_csv('student-mat.csv', sep=';')
+ #カーネル密度関数
+
+ plt.hist(student_data_math.G1)
+plt.grid(True)
+plt.show()
+student_data_math.G1.plot(kind='kde', style='k--')
+student_data_math.G1.hist(density = True)
+plt.grid(True)
+plt.show()
