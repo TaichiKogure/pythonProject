@@ -397,4 +397,18 @@ zip_file_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00356/
  plt.grid(True)
  plt.show()
  #%%
+ N = 1000
+ normal_sample_data = [np.random.normal(0,1,100).mean() for i in range(N)]
 
+ plt.hist(normal_sample_data, bins=50, color='b')
+ plt.grid(True)
+ plt.show()
+
+#%%
+#対数正規分布
+N2 =10000
+normal_sample_data = [np.random.lognormal(0, 1.2, 1000).mean() for i in range(N)]
+
+plt.hist(normal_sample_data, bins=50, color='r')
+plt.grid(True)
+plt.show()
