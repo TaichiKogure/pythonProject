@@ -413,6 +413,7 @@ plt.hist(normal_sample_data, bins=50, color='r')
 plt.grid(True)
 plt.show()
 #%%
+#練習問題４−６
 import requests
 import zipfile
 import numpy as np
@@ -439,4 +440,40 @@ plt.show()
 student_data_math.G1.plot(kind='kde', style='k--')
 student_data_math.G1.hist(density = True)
 plt.grid(True)
+plt.show()
+#%%
+#Chapter 4-4 多次元確率分布
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as st
+from scipy.stats import multivariate_normal
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+
+#データの設定、１０から１００まで２つづつの数を作ってposでまとめている
+x, y = np.mgrid[10:100:2, 10:100:2]
+
+pos = np.empty(x.shape + (2, ))
+pos[:,:,0] = x
+pos[:,:,1] = y
+# 多次元正規分布、それぞれの変数の平均と分散共分散行列を設定
+# 以下の例ではxとyの平均がそれぞれ５０と５０、[[100,0],[0,100]]がxとyの共分散行列になる。
+rv = multivariate_normal([50,50],[[100,0],[0,100]])
+#確率密度関数
+z = rv.pdf(pos)
+
+#グラフ化
+
+fig = plt.figure(dpi=100)
+
+ax = Axes3D(fig)
+ax.plot_wireframe(x,y,z)
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('f(x,y)')
+#z軸の表示メモリ単位を変更、sciが指数表示、axisで軸を指定、scilimits=(n,m)はnからmの外にあるものは指数表記
+#scilimits = (0,0)は全て紙数表記にするという意味
+ax.ticklabel_format(style='sci',axis='z',scilimits=(0,0))
+ax.plot_surface(x, y, z, rstride=1, cstride=1,cmap=cm.coolwarm)
 plt.show()
