@@ -464,9 +464,11 @@ z = rv.pdf(pos)
 
 #グラフ化
 
-fig = plt.figure(dpi=100)
-
+fig = plt.figure(figsize=(15,15))
 ax = Axes3D(fig)
+# add to Figure
+fig.add_axes(ax)#Axes3DオブジェクトとFigureオブジェクトは作成しているが、Matplotlibのバージョン3.4からは、
+                # Axes3Dオブジェクトを生成しても自動的にはFigureオブジェクトには追加されなくなった
 ax.plot_wireframe(x,y,z)
 
 ax.set_xlabel('x')
@@ -475,5 +477,7 @@ ax.set_zlabel('f(x,y)')
 #z軸の表示メモリ単位を変更、sciが指数表示、axisで軸を指定、scilimits=(n,m)はnからmの外にあるものは指数表記
 #scilimits = (0,0)は全て紙数表記にするという意味
 ax.ticklabel_format(style='sci',axis='z',scilimits=(0,0))
-ax.plot_surface(x, y, z, rstride=1, cstride=1,cmap=cm.coolwarm)
+#ax.plot_surface(x, y, z, rstride=1, cstride=1,cmap=cm.coolwarm)
 plt.show()
+#%%
+
