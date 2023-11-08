@@ -41,8 +41,8 @@ def function_central_theory(N):
 function_central_theory(3)
 
 #%%
-num_simulations = 1000  # シミュレーションの回数
-num_rolls = 10  # サイコロを振る回数
+num_simulations = 10000  # シミュレーションの回数
+num_rolls = 100000  # サイコロを振る回数
 
 sums = np.zeros(num_simulations)
 
@@ -50,9 +50,10 @@ for i in range(num_simulations):
     dice_rolls = np.random.randint(1, 7, num_rolls)  # サイコロをnum_rolls回振った結果
     sums[i] = np.sum(dice_rolls)  # サイコロの合計を記録
 
-plt.hist(sums, bins=30, density=True, alpha=0.6, color='b', label='Simulated Sum')
+plt.hist(sums, bins=30, density=True, alpha=0.4, color='b', label='Simulated Sum')
 plt.xlabel('Sum of Dice Rolls')
 plt.ylabel('Probability Density')
 plt.title('Central Limit Theorem Simulation')
 plt.legend()
-plt.show()
+plt.show(
+    #%%
