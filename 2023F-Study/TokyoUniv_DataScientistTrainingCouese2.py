@@ -3,6 +3,7 @@
 # 大数の法則
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 calc_time = 300
 # サイコロ
@@ -65,3 +66,20 @@ for df, c in zip([2,4,10],["#6495ed","#daa520","#ff00ff"]):
     plt.hist(x, 50, color = c)
 plt.grid(True)
 plt.show()
+#%%
+import pandas as pd
+#統計的検定
+student_data_math =pd.read_csv('student-mat.csv',sep =';')
+student_data_por = pd.read_csv('student-por.csv',sep = ';')
+#マージする
+student_data_merge = pd.merge(student_data_math, student_data_por
+                              , on=['school','sex','age','address','famsize','Pstatus','Medu',
+                                    'Fedu','Mjob','reason','nursery','internet']
+                              , suffixes=('_math','_por'))
+print('G1数学の成績平均：', student_data_merge.G1_math.mean())
+print('G2数学の成績平均：', student_data_merge.G2_math.mean())
+print('G3数学の成績平均：', student_data_merge.G3_math.mean())
+print('G1ポルトガル語の成績平均は', student_data_merge.G1_por.mean())
+print('G2ポルトガル語の成績平均は', student_data_merge.G2_por.mean())
+print('G3ポルトガル語の成績平均は', student_data_merge.G3_por.mean())
+
