@@ -4,6 +4,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pandas import DataFrame
 
 calc_time = 300
 # サイコロ
@@ -72,7 +73,7 @@ import pandas as pd
 student_data_math =pd.read_csv('student-mat.csv',sep =';')
 student_data_por = pd.read_csv('student-por.csv',sep = ';')
 #マージする
-student_data_merge = pd.merge(student_data_math, student_data_por
+student_data_merge: DataFrame = pd.merge(student_data_math, student_data_por
                               , on=['school','sex','age','address','famsize','Pstatus','Medu',
                                     'Fedu','Mjob','reason','nursery','internet']
                               , suffixes=('_math','_por'))
@@ -82,4 +83,12 @@ print('G3数学の成績平均：', student_data_merge.G3_math.mean())
 print('G1ポルトガル語の成績平均は', student_data_merge.G1_por.mean())
 print('G2ポルトガル語の成績平均は', student_data_merge.G2_por.mean())
 print('G3ポルトガル語の成績平均は', student_data_merge.G3_por.mean())
+
+#%%
+from scipy import stats
+t, p = stats.ttest_rel(student_data_merge.G1_math, student_data_merge.G1_por)
+print('p値 = ', p)
+
+
+
 
