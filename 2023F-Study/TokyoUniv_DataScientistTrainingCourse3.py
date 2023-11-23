@@ -21,3 +21,4 @@ print(sample_array)
 #前から６つ取得してスライスに入れる
 sample_array_slice = sample_array[0:6]
 print(sample_array_slice)
+#tst
