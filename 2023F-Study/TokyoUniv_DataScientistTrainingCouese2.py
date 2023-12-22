@@ -19,6 +19,28 @@ for i in range(200):
 
 plt.show()
 
+#%%
+
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
+matplotlib.use('TkAgg')
+
+def plot_random_walks(dice_faces, trial_count, path_count=200):
+    for _ in range(path_count):
+        cumulative_path = np.random.choice(dice_faces, len(trial_count)).cumsum()
+        plt.plot(cumulative_path / trial_count)
+        plt.grid(True)
+    plt.show()
+
+# Law of large numbers
+calc_time = 300
+# Dice
+dice_faces = np.array([1, 2, 3, 4, 5, 6])
+trial_count = np.arange(1, calc_time + 1)
+# Generate and plot paths
+plot_random_walks(dice_faces, trial_count)
+plt.show()
 # %%
 # 中心極限定理
 import numpy as np
