@@ -102,3 +102,32 @@ for i in range(10):
     for j in range(i+1, 10):  # 各ペアに対して一回ずつt検定を行う
         t_stat, p_val = stats.ttest_ind(data[i], data[j])
         print(f't検定結果 (group{i+1} vs group{j+1}): t統計量 = {t_stat}, p値 = {p_val}')
+
+
+#%%
+import pandas as pd
+
+# Excelファイルを読み込む
+xlsx = pd.ExcelFile('Booktest.xlsx')
+
+# Excelの各シートをループして処理
+for sheet_name in xlsx.sheet_names:
+    # シートをDataFrameに読み込む
+    df = pd.read_excel(xlsx, sheet_name=sheet_name)
+
+    # ユーザに対話形式でCSVファイルの名前を入力させる
+    csv_file_name = input(f"Enter the name of the CSV for the sheet '{sheet_name}' (without .csv): ")
+
+    # DataFrameをCSVとして出力
+    df.to_csv(f"{csv_file_name}.csv", index=False)
+#%%
+import os
+import pandas as pd
+
+filename = 'Booktest.xlsx'
+
+# Ensure the file exists before trying to open it
+if os.path.isfile(filename):
+    xlsx = pd.ExcelFile(filename)
+else:
+    print(f"The file '{filename}' does not exist.")
