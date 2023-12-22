@@ -124,10 +124,54 @@ for sheet_name in xlsx.sheet_names:
 import os
 import pandas as pd
 
-filename = 'Booktest.xlsx'
+filename = '../Booktest.xlsx'
 
 # Ensure the file exists before trying to open it
 if os.path.isfile(filename):
     xlsx = pd.ExcelFile(filename)
 else:
     print(f"The file '{filename}' does not exist.")
+
+#%%
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSVファイルを読み込み、データフレームとして保存
+df1 = pd.read_csv('separate1.csv')
+df2 = pd.read_csv('separate2.csv')
+df3 = pd.read_csv('separate3.csv')
+
+plt.figure()
+
+# プロットを作成します
+plt.plot(df1, label='separate1')
+plt.plot(df2, label='separate2')
+plt.plot(df3, label='separate3')
+
+# y軸の範囲を指定 （例：0から20）
+plt.ylim(0, 50)
+
+# 凡例を表示
+plt.legend()
+
+plt.show()
+#%%
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSVファイルを読み込み、データフレームとして保存
+df1 = pd.read_csv('separate1.csv')
+df2 = pd.read_csv('separate2.csv')
+df3 = pd.read_csv('separate3.csv')
+
+plt.figure()
+
+# プロットを作成します
+plt.semilogy(df1, label='separate1')
+plt.semilogy(df2, label='separate2')
+plt.semilogy(df3, label='separate3')
+
+# 凡例を表示
+plt.legend()
+
+plt.show()
