@@ -5,11 +5,14 @@ from scipy.signal import find_peaks
 
 # Load the data
 data = pd.read_csv('LCO_OCV1.csv')
+
 # Assuming the data has columns 'x' and 'Potential(V)'
 x = data['x']
 V = data['Potential(V)']
+
 # Plot the data
 plt.figure()
+
 # Plot x vs Potential(V) data
 plt.plot(x, V, label="x vs Potential(V)")
 plt.title('Plot of x vs Potential(V) from LCO_OCV1.csv')

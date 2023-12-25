@@ -93,21 +93,35 @@ print(peak_info)
 print(valley_info)
 
 #%%
-fig = plt.figure()
 
+
+#%%
+
+#２軸グラフをリファクタリングして整理。
+
+# extract y-axis limits as variables
+potential_v_limit = [3, 5.4]
+dv_smoothed_limit = [-0.0003, 0.002]
+
+# extract peak and valley x values as variables
+peak_x_values = [x[i] for i in peak_indices]
+valley_x_values = [x[i] for i in valley_indices]
+
+fig = plt.figure()
 ax1 = fig.subplots()
 ax2 = ax1.twinx()
 
-# Setting y-axis limits for the first axis (Potential V)
-ax1.set_ylim([3, 5.4])  # replace with the actual range you desire
-# Setting y-axis limits for the second axis (dV_smoothed)
-ax2.set_ylim([-0.0003, 0.002])  # replace with the actual range you desire
+# use the named variables for setting y-axis limits
+ax1.set_ylim(potential_v_limit)
+ax2.set_ylim(dv_smoothed_limit)
 
-ax1.plot(x, V, color='red')  # setting color to red
-ax2.plot(x, dV_smoothed, color='gray')  # setting color to blue
-ax2.scatter([x[i] for i in peak_indices], [dV_smoothed[i] for i in peak_indices], c='red', label="Peaks")
-ax2.scatter([x[i] for i in valley_indices], [dV_smoothed[i] for i in valley_indices], c='blue', label="Valleys")
+ax1.plot(x, V, color='red')
+ax2.plot(x, dV_smoothed, color='gray')
+
+# use the named variables for peak and valley x values
+ax2.scatter(peak_x_values, [dV_smoothed[i] for i in peak_indices], c='red', label="Peaks")
+ax2.scatter(valley_x_values, [dV_smoothed[i] for i in valley_indices], c='blue', label="Valleys")
 
 plt.grid(True)
-plt.legend(loc='upper right')
+plt.legend(loc='upper left')
 plt.show()
