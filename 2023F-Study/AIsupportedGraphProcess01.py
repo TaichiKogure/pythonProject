@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.signal import find_peaks
+
 # Load the data
 data = pd.read_csv('LCO_OCV1.csv')
 # Assuming the data has columns 'x' and 'Potential(V)'
@@ -17,10 +19,11 @@ plt.grid(True)
 plt.legend(loc='upper right')
 plt.show()
 
-#%%
+# %%
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
 # Load the data
 data = pd.read_csv('LCO_OCV1.csv')
 # Assuming the data has columns 'x' and 'y'
@@ -42,7 +45,7 @@ plt.grid(True)
 plt.legend(loc='upper right')
 plt.show()
 
-#%%
+# %%
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -70,7 +73,7 @@ plt.legend(loc='upper right')
 # Plot the derivative data
 plt.figure()
 # We should also shorten our x array by 1 so it has the same length as our derivative arrays
-plt.plot(x[:-1], dV/dx, label="dx dv Potential(V)")
+plt.plot(x[:-1], dV / dx, label="dx dv Potential(V)")
 plt.title('Plot of derivatives of x and Potential(V) from LCO_OCV1.csv')
 plt.xlabel('x')
 plt.ylabel('dPotential(V)/dx')
@@ -79,7 +82,13 @@ plt.legend(loc='upper right')
 
 plt.show()
 
-#%%
+# %%
+
+####
+#### ちょっと修正
+####
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -118,49 +127,53 @@ plt.legend(loc='upper right')
 plt.ylim([-0.001, 0.001])  # replace lower_bound and upper_bound with actual values
 plt.show()
 
-#%%
-#近似曲線で記載
-from scipy.optimize import curve_fit
+# Scipyで記載し直し
+import numpy as np
+import matplotlib.pyplot as plt
 
-# Assume we want to fit the derivative with a quadratic function
-def func(x, a, b, c):
-    return a * x**2 + b * x + c
+# Plot the data
+plt.plot(x, dV, label="Data")  # Uncomment this line
 
-popt, pcov = curve_fit(func, x, dV)
+# Degree of the polynomial
+degrees = [1, 3, 5, 7, 10, 20]
+for degree in degrees:
+    # Fit the data using polyfit for the given degree
+    parameters = np.polyfit(x, dV, degree)
+    # Use the fitted parameters to create a polynomial function
+    polynomial = np.poly1d(parameters)
+    # Create a smooth x for plotting the polynomial
+    x_smooth = np.linspace(min(x), max(x), 100)
+    plt.plot(x_smooth, polynomial(x_smooth), label=f"Fit Degree {degree}")
 
-plt.figure()
-plt.plot(x, dV, label="Derivative of Potential(V)")
-plt.plot(x, func(x, *popt), 'r-', label="Fit: a=%5.3f, b=%5.3f, c=%5.3f" % tuple(popt))
-plt.title('Plot of derivative of Potential(V) from LCO_OCV1.csv with fitting curve')
+
+
+plt.title('Fitting polynomial of different degrees')
 plt.xlabel('x')
-plt.ylabel('dPotential(V)/dx')
-plt.grid(True)
-plt.legend(loc='upper right')
-# Set the limits of y-axis
-plt.ylim([-0.001, 0.001])  # replace lower_bound and upper_bound with actual values
+plt.ylabel('y')
+plt.legend()
+plt.ylim([-0.001, 0.001])  # r
 plt.show()
 
-#%%
-# Calculate the absolute value of the derivatives with set interval
-dV = np.abs(np.gradient(V, interval))
 
-# The rest of your code...
+# Peak detection for Data
+peaks_data, _ = find_peaks(dV)
+plt.plot(x[peaks_data], dV[peaks_data], "x")  # Plot the peaks in the data
 
-# No need to shorten our x array as np.gradient returns array of the same length
-plt.plot(x, dV, label="Absolute value of derivative of Potential(V)")
-plt.title('Plot of absolute value of derivative of Potential(V) from LCO_OCV1.csv')
-plt.ylabel('|dPotential(V)/dx|')
+# Peak detection for each Fit Degree
+for degree in degrees:
+    # Fit the data using polyfit for the given degree
+    parameters = np.polyfit(x, dV, degree)
+    # Use the fitted parameters to create a polynomial function
+    polynomial = np.poly1d(parameters)
 
-# Fit the absolute value of derivative with a quadratic function
-popt, pcov = curve_fit(func, x, dV)
+    # Peak detection for the fitted curve
+    peaks_fit, _ = find_peaks(polynomial(x))
+    plt.plot(x[peaks_fit], polynomial(x)[peaks_fit], "o")  # Plot the peaks in the fitted curve
 
-plt.figure()
-plt.plot(x, dV, label="Absolute value of derivative of Potential(V)")
-plt.plot(x, func(x, *popt), 'r-', label="Fit: a=%5.3f, b=%5.3f, c=%5.3f" % tuple(popt))
-plt.title('Plot of absolute value of derivative of Potential(V) from LCO_OCV1.csv with fitting curve')
-plt.ylabel('|dPotential(V)/dx|')
-plt.grid(True)
-plt.legend(loc='upper right')
-# Set the limits of y-axis
-plt.ylim([-0.00, 0.001])  # replace lower_bound and upper_bound with actual values
+
+plt.title('Fitting polynomial of different degrees')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.ylim([-0.00, 0.001])  # r
 plt.show()
