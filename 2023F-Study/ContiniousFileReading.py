@@ -104,3 +104,62 @@ with plt.rc_context({'animation.writer': 'pillow'}):
     ani.save('rotation.gif', writer='pillow', fps=20)
 
     plt.show()
+#%%
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import numpy as np
+
+# Prepare the 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+frames = []
+
+# Generate frames
+for z in np.arange(1, 11):
+    x = np.full(100, z)
+    y = np.full(100, z)**2 + 3 * z
+    frame = ax.scatter(x, y, np.full(100, z))
+    frames.append([frame])
+
+# Create animation
+with plt.rc_context({'animation.writer': 'pillow'}):
+    ani = animation.ArtistAnimation(fig, frames, interval=500, blit=True,)
+
+    # Save as GIF
+    ani.save('rotation.gif', writer='pillow', fps=60)
+
+plt.show()
+
+#%%
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Data for scatter plot
+z = np.arange(1, 11)
+
+frames = []
+
+# Generate frames
+for angle in range(0, 360):
+    ax.view_init(30, angle)
+    for val in z:
+        x = np.full(100, val)
+        y = np.full(100, val) ** 2 + 3 * val
+        frame = ax.scatter(x, y, np.full(100, val))
+    plt.draw()
+    frames.append([frame])
+
+# Clear the axis
+ax.cla()
+
+# Create animation
+ani = animation.ArtistAnimation(fig, frames, interval=100)
+ani.save('rotation2.gif', writer='pillow', fps=30)
+
+plt.show()
