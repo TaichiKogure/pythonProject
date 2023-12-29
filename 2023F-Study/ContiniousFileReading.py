@@ -132,34 +132,33 @@ with plt.rc_context({'animation.writer': 'pillow'}):
 plt.show()
 
 #%%
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import numpy as np
+import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+# tの値を生成
+t_values = [np.linspace(1, 10, 200), np.linspace(1, 20, 400), np.linspace(1, 30, 600)]
+
+# 3Dフィギュアを作成
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-# Data for scatter plot
-z = np.arange(1, 11)
+for t in t_values:
+    # xとyを生成
+    x = t ** 2
+    y = x ** 3
+    # z軸にtを使う(もしくは別の関数)
+    z = t*x
+    # データをプロット
+    ax.plot(x, y, z)
 
-frames = []
-
-# Generate frames
-for angle in range(0, 360):
-    ax.view_init(30, angle)
-    for val in z:
-        x = np.full(100, val)
-        y = np.full(100, val) ** 2 + 3 * val
-        frame = ax.scatter(x, y, np.full(100, val))
-    plt.draw()
-    frames.append([frame])
-
-# Clear the axis
-ax.cla()
-
-# Create animation
-ani = animation.ArtistAnimation(fig, frames, interval=100)
-ani.save('rotation2.gif', writer='pillow', fps=30)
-
+for t in t_values:
+    # xとyを生成
+    x = t ** 4
+    y = x ** 2
+    # z軸にtを使う(もしくは別の関数)
+    z = t*x
+    # データをプロット
+    ax.plot(x, y, z)
+# グラフを表示
 plt.show()
