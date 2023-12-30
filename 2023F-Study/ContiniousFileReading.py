@@ -132,13 +132,12 @@ with plt.rc_context({'animation.writer': 'pillow'}):
 plt.show()
 
 #%%
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-
 # tの値を生成
 t_values = [np.linspace(1, 10, 200), np.linspace(1, 20, 400), np.linspace(1, 30, 600)]
-
 # 3Dフィギュアを作成
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -149,16 +148,16 @@ for t in t_values:
     y = x ** 3
     # z軸にtを使う(もしくは別の関数)
     z = t*x
-    # データをプロット
-    ax.plot(x, y, z)
 
-for t in t_values:
     # xとyを生成
-    x = t ** 4
-    y = x ** 2
+    x2 = t ** 2.1
+    y2 = x2 ** 4.5
     # z軸にtを使う(もしくは別の関数)
-    z = t*x
-    # データをプロット
-    ax.plot(x, y, z)
+    z2 = t*2
+
+# データをプロット
+ax.plot(x, y, z)
+ax.plot(x2, y2, z2)
+
 # グラフを表示
 plt.show()
