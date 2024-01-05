@@ -21,12 +21,12 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # 定義範囲
-t = np.linspace(1, 10, 100)
-theta = np.linspace(-4 * np.pi, 4 * np.pi, 100)
+t = np.linspace(1, 10, 1000)
+theta = np.linspace(-10 * np.pi, 6 * np.pi, 1000)
 
 # 三角関数を計算
 z = np.sin(theta)
-r = z**2 + 1
+r = z**6 + 3
 x = r * np.sin(theta)
 y = r * np.cos(theta)
 
