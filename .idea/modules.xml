@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../CAD2CAE/.idea/CAD2CAE.iml" filepath="$PROJECT_DIR$/../CAD2CAE/.idea/CAD2CAE.iml" />
+      <module fileurl="file://$USER_HOME$/Library/Caches/JetBrains/PyCharm2023.3/demo/PyCharmLearningProject/.idea/PyCharmLearningProject.iml" filepath="$USER_HOME$/Library/Caches/JetBrains/PyCharm2023.3/demo/PyCharmLearningProject/.idea/PyCharmLearningProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/.idea/pythonProject.iml" />
     </modules>
   </component>
