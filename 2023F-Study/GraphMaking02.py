@@ -33,3 +33,15 @@ ax3.set_ylabel('y = 2*log(x)')
 # show plot
 plt.tight_layout()
 plt.show()
+
+#%%
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Insert a Seaborn palette here
+palette = sns.color_palette("bright", 20)
+
+sns.palplot(palette)
+plt.show()
+#%%
+
