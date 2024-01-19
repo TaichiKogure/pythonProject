@@ -45,3 +45,47 @@ sns.palplot(palette)
 plt.show()
 #%%
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# データ作成
+data = [90, 85, 77, 95, 80, 70, 80, 85, 88, 90, 0, 30, 60, 78, 50]
+
+# 箱ひげ図の作成
+sns.boxplot(data=data)
+
+# グラフの表示
+plt.show()
+#%%
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras import losses
+from tensorflow.keras import optimizers
+
+# 入力とクラスの数
+input_shape = (28, 28, 1) # MNIST画像の形式
+num_classes = 10 # MNISTのクラス数 (0-9の手書き数字)
+
+# モデルの定義
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dense(num_classes, activation='softmax'))
+
+# モデルのコンパイル
+model.compile(loss=losses.categorical_crossentropy,
+              optimizer=optimizers.Adam(),
+              metrics=['accuracy'])
+
+# モデルの概要を表示
+model.summary()
+
+# モデルの概要を表示
+model.summary()
+#%%
+import tensorflow as tf
+print(tf.__version__)
